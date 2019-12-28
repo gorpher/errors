@@ -1,8 +1,8 @@
-# errors [![Travis-CI](https://travis-ci.org/pkg/errors.svg)](https://travis-ci.org/pkg/errors) [![AppVeyor](https://ci.appveyor.com/api/projects/status/b98mptawhudj53ep/branch/master?svg=true)](https://ci.appveyor.com/project/davecheney/errors/branch/master) [![GoDoc](https://godoc.org/github.com/pkg/errors?status.svg)](http://godoc.org/github.com/pkg/errors) [![Report card](https://goreportcard.com/badge/github.com/pkg/errors)](https://goreportcard.com/report/github.com/pkg/errors) [![Sourcegraph](https://sourcegraph.com/github.com/pkg/errors/-/badge.svg)](https://sourcegraph.com/github.com/pkg/errors?badge)
+# errors [![Travis-CI](https://travis-ci.org/pkg/errors.svg)](https://travis-ci.org/pkg/errors) [![AppVeyor](https://ci.appveyor.com/api/projects/status/b98mptawhudj53ep/branch/master?svg=true)](https://ci.appveyor.com/project/davecheney/errors/branch/master) [![GoDoc](https://godoc.org/github.com/gorpher/errors?status.svg)](http://godoc.org/github.com/gorpher/errors) [![Report card](https://goreportcard.com/badge/github.com/gorpher/errors)](https://goreportcard.com/report/github.com/gorpher/errors) [![Sourcegraph](https://sourcegraph.com/github.com/gorpher/errors/-/badge.svg)](https://sourcegraph.com/github.com/gorpher/errors?badge)
 
 Package errors provides simple error handling primitives.
 
-`go get github.com/pkg/errors`
+`go get github.com/gorpher/errors`
 
 The traditional error handling idiom in Go is roughly akin to
 ```go
@@ -38,8 +38,18 @@ default:
         // unknown error
 }
 ```
+`errors.Unwrap` returns the result of calling the Unwrap method on err, if err implements `Unwrap`. Otherwise, Unwrap returns nil.
+```go
 
-[Read the package documentation for more information](https://godoc.org/github.com/pkg/errors).
+    err1 := fmt.Errorf("error %d", 1)
+	err2 := errors.Wrap(err1, "error 2")
+	err3 := errors.Wrap(err2, "error 3")
+	e := errors.UnwrapAll(err3)
+	
+	fmt.Println(e == err1)
+
+```
+[Read the package documentation for more information](https://godoc.org/github.com/gorpher/errors).
 
 ## Roadmap
 
